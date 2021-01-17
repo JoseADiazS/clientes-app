@@ -16,7 +16,19 @@ export class ClientesComponent implements OnInit {
   constructor(private ClienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.clientes = this.ClienteService.getClientes();
+      this.ClienteService.getClientes().subscribe(
+        // => Este comando se usa para asignar un parametro funciones anonimas o
+        // de arrow
+        // Este es el observador
+      clientes => this.clientes = clientes
+
+      // Este funcion podria ser reemplazada por:
+      // function (clientes){
+      //   this.clientes = clientes
+      // }
+
+      // Ctrl-K y Ctrl-C para comentar
+     );
   }
 
 }
