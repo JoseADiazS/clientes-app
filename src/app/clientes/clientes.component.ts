@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente} from './cliente';
-import {CLIENTES} from './clientes.json';
+import { ClienteService } from './cliente.service';
+
 
 @Component({
   selector: 'app-clientes',
@@ -10,10 +11,12 @@ import {CLIENTES} from './clientes.json';
 export class ClientesComponent implements OnInit {
 
   clientes: Cliente[];
-  constructor() { }
+  // Se esta inyectando la dependencia de la lista de clientes 
+  // de esta manera se mantiene separada la capa de datos de la de control
+  constructor(private ClienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.clientes = CLIENTES;
+    this.clientes = this.ClienteService.getClientes();
   }
 
 }
